@@ -8,6 +8,7 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import UTC, date, datetime, timedelta
 from hashlib import sha256
+from importlib.resources import files
 from pathlib import Path
 from typing import Any
 
@@ -201,6 +202,7 @@ def analyze(
         match_rows,
     )
     timeline_rows = _theme_timelines(category_rows)
+    events = _load_external_events(year)
     _write_csv(
         output / "theme_timelines.csv",
         [
@@ -217,6 +219,11 @@ def analyze(
         ],
         timeline_rows,
     )
+    _write_csv(
+        output / "external_events.csv",
+        ["date", "theme", "event", "source"],
+        events,
+    )
     (output / "report.md").write_text(
         _render_report(
             year,
@@ -224,6 +231,7 @@ def analyze(
             monthly_rows,
             category_rows,
             timeline_rows,
+            events,
             taxonomy.version,
         ),
         encoding="utf-8",
@@ -237,6 +245,7 @@ def analyze(
                 "monthly_summary": monthly_rows,
                 "category_trends": category_rows,
                 "theme_timelines": timeline_rows,
+                "external_events": events,
             },
             indent=2,
             ensure_ascii=False,
@@ -306,6 +315,13 @@ def _median(values: list[int]) -> float:
     return (ordered[middle - 1] + ordered[middle]) / 2
 
 
+def _load_external_events(year: int) -> list[dict[str, str]]:
+    resource = files("ph_trends").joinpath(f"external_events_{year}.json")
+    if not resource.is_file():
+        return []
+    return json.loads(resource.read_text(encoding="utf-8"))
+
+
 def _wilson_interval(successes: int, total: int, z: float = 1.96) -> tuple[float, float]:
     if total == 0:
         return 0.0, 0.0
@@ -366,6 +382,7 @@ def _render_report(
     monthly_rows: list[dict[str, Any]],
     category_rows: list[dict[str, Any]],
     timeline_rows: list[dict[str, Any]],
+    events: list[dict[str, str]],
     taxonomy_version: str,
 ) -> str:
     latest_month = monthly_rows[-1]["month"]
@@ -425,6 +442,10 @@ def _render_report(
             f"{float(row['latest_population_share']):.1%} | "
             f"{float(row['first_to_latest_change_pp']):+.1f} pp |"
         )
+    if events:
+        lines.extend(["", "## External timeline anchors", ""])
+        for event in events:
+            lines.append(f"- **{event['date']}**: {event['event']} ([source]({event['source']}))")
     lines.extend(
         [
             "",

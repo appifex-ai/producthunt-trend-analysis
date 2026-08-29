@@ -41,6 +41,7 @@ def test_analysis_and_product_rank(tmp_path, make_post) -> None:
     assert (output / "report.md").exists()
     assert (output / "theme_timelines.csv").exists()
     assert (output / "category_matches.csv").exists()
+    assert (output / "external_events.csv").exists()
     with (output / "monthly_summary.csv").open() as handle:
         rows = list(csv.DictReader(handle))
     assert rows[0]["featured_posts"] == "10"

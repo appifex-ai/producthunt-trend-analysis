@@ -1,0 +1,44 @@
+[
+  {
+    "date": "2026-01-12",
+    "theme": "ai_coworkers",
+    "event": "Anthropic launched Cowork as a research preview",
+    "source": "https://www.anthropic.com/news/introducing-anthropic-labs"
+  },
+  {
+    "date": "2026-01-30",
+    "theme": "openclaw_ecosystem",
+    "event": "The first OpenClaw-named GitHub release was published",
+    "source": "https://github.com/openclaw/openclaw/releases/tag/v2026.1.29"
+  },
+  {
+    "date": "2026-02-05",
+    "theme": "ai_coworkers",
+    "event": "OpenAI introduced Frontier as a platform for enterprise AI coworkers",
+    "source": "https://openai.com/index/introducing-openai-frontier/"
+  },
+  {
+    "date": "2026-05-13",
+    "theme": "harness_infrastructure",
+    "event": "AI Harness Engineering formalized the model-harness-environment substrate",
+    "source": "https://arxiv.org/abs/2605.13357"
+  },
+  {
+    "date": "2026-06-02",
+    "theme": "human_agent_organization",
+    "event": "Vokal launched its shared collaboration space on Product Hunt",
+    "source": "https://www.producthunt.com/products/vokal-2"
+  },
+  {
+    "date": "2026-07-17",
+    "theme": "loop_engineering",
+    "event": "IBM published its definition of loop engineering",
+    "source": "https://www.ibm.com/think/topics/loop-engineering"
+  },
+  {
+    "date": "2026-08-22",
+    "theme": "loop_engineering",
+    "event": "A research review reported an exploratory study of loop engineering adoption",
+    "source": "https://arxiv.org/abs/2608.21884"
+  }
+]

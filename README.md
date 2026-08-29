@@ -73,6 +73,7 @@ coordination model.
 - `theme_timelines.csv`: first appearance, peak months, latest share, and net change by theme
 - `top_products.csv`: top 25 launches per month for inspection
 - `category_matches.csv`: every matched product and term for manual false-positive review
+- `external_events.csv`: versioned primary-source milestones for descriptive timeline comparison
 - `analysis.json`: machine-readable results with taxonomy version
 - `report.md`: concise human-readable summary and methodology
 - `manifest.json`: SHA-256 checksums for reproducibility and change review
