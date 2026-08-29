@@ -1,14 +1,56 @@
-# MCP is eating the AI agent moat
-
-The controversial reading of 2026 Product Hunt data is not that AI agents won. It is that the word
-"agent" stopped differentiating, and MCP is now standardizing the integration work that many agent
-products treated as their moat. The scarce layer is moving again: toward proprietary workflow and
-data below the protocol, and toward identity, permissions, evaluation, recovery, and coordination
-above it.
+# What Product Hunt builders shipped in 2026
 
 This brief analyzes all 5,019 featured Product Hunt launches collected from January 1 through August
 29, 2026. Categories are overlapping text matches over launch copy. External milestones explain
 plausible timing, not causation.
+
+## The data: month-by-month share of featured launches
+
+| Builder theme | Jan | Feb | Mar | Apr | May | Jun | Jul | Aug |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Agent identity | 12.0% | 16.9% | 22.7% | 17.5% | 18.7% | 18.3% | 22.1% | 22.7% |
+| Harness / infrastructure | 4.6% | 4.9% | 6.9% | 7.1% | 8.8% | 8.9% | 9.9% | 10.5% |
+| MCP specifically | 4.2% | 4.1% | 5.3% | 5.9% | 7.6% | 8.0% | 8.8% | 9.0% |
+| Coding / building | 3.9% | 6.3% | 7.5% | 5.4% | 3.0% | 4.9% | 4.7% | 7.4% |
+| OpenClaw ecosystem | 0.2% | 5.3% | 6.1% | 1.7% | 1.3% | 1.3% | 1.1% | 0.8% |
+| Human-agent organization | 0.9% | 1.2% | 2.1% | 1.3% | 1.8% | 1.6% | 1.3% | 1.7% |
+| AI coworkers | 0.0% | 0.4% | 0.7% | 0.3% | 0.2% | 1.0% | 1.1% | 1.1% |
+| GTM agents | 0.2% | 0.6% | 0.4% | 0.6% | 0.5% | 0.6% | 0.4% | 0.6% |
+| Loop engineering | 0.0% | 0.0% | 0.4% | 0.0% | 0.1% | 0.0% | 0.0% | 0.2% |
+
+Monthly featured-launch totals were 432, 508, 677, 901, 827, 616, 534, and 524. The table uses
+monthly shares so April's larger launch population does not mechanically dominate the comparison.
+Categories overlap, so rows must not be added into a market-share total.
+
+The visible shapes are different:
+
+- **Broad normalization:** agent identity rose from 12.0% to 22.7%.
+- **Steady compounding:** harness and infrastructure rose in six of seven monthly transitions,
+  from 4.6% to 10.5%.
+- **Spike and contraction:** OpenClaw jumped to 6.1% in March, then declined to 0.8% by August.
+- **Small emerging language:** AI coworkers reached 1.1%; human-agent organization reached 1.7%.
+- **Discourse without product adoption:** loop engineering matched only five launches all year.
+
+## Industry events aligned to the launch data
+
+These are temporal alignments, not causal estimates.
+
+| Industry event | Observed Product Hunt pattern | Reading |
+|---|---|---|
+| OpenClaw-named release, Jan 30 | 0.2% Jan -> 5.3% Feb -> 6.1% Mar -> 0.8% Aug | A sharp ecosystem replication cycle followed the release, then contracted. |
+| AI Harness Engineering paper, May 13 | 4.6% Jan -> 8.8% May -> 10.5% Aug | Product positioning was already rising before the paper named the practice. |
+| MCP specification update, Jul 28 | MCP-specific share: 4.2% Jan -> 8.8% Jul -> 9.0% Aug | The update landed after protocol adoption was already established in launch copy. |
+| IBM loop-engineering definition, Jul 17; research review, Aug 22 | 0 matches in July, 1 in August, 5 all year | The term describes an engineering practice, not yet a Product Hunt category. |
+| Anthropic Cowork, Jan 12; OpenAI Frontier, Feb 5 | 0.0% Jan -> 0.4% Feb -> 1.1% Aug | Coworker language grew, but remains too small for a mass-market claim. |
+
+## Interpretation after the evidence
+
+Builders chased agents broadly, OpenClaw briefly, and MCP steadily. Loop engineering is still a
+method, not a launch category. The strongest forward-looking inference is that standardized
+connectivity shifts differentiation toward proprietary workflow and data below the protocol, and
+toward identity, permissions, evaluation, recovery, and coordination above it.
+
+That final statement is a strategic inference. It is not directly measured market share.
 
 ## What other trend reports see, and what they miss
 

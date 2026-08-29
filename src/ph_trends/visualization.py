@@ -3,7 +3,6 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-import textwrap
 from dataclasses import dataclass
 from hashlib import sha256
 from pathlib import Path
@@ -24,8 +23,36 @@ class IndustryEvolution:
 REQUIRED_CATEGORIES = (
     "agent_identity",
     "harness_infrastructure",
+    "coding_and_building",
     "openclaw_ecosystem",
+    "human_agent_organization",
     "ai_coworkers",
+    "gtm_agents",
+    "loop_engineering",
+)
+
+DISPLAY_LABELS = {
+    "agent_identity": "Agent identity",
+    "harness_infrastructure": "Harness / infrastructure",
+    "mcp_specific": "MCP specifically",
+    "coding_and_building": "Coding / building",
+    "openclaw_ecosystem": "OpenClaw ecosystem",
+    "human_agent_organization": "Human-agent organization",
+    "ai_coworkers": "AI coworkers",
+    "gtm_agents": "GTM agents",
+    "loop_engineering": "Loop engineering",
+}
+
+DISPLAY_ROWS = (
+    "agent_identity",
+    "harness_infrastructure",
+    "mcp_specific",
+    "coding_and_building",
+    "openclaw_ecosystem",
+    "human_agent_organization",
+    "ai_coworkers",
+    "gtm_agents",
+    "loop_engineering",
 )
 
 
@@ -100,8 +127,9 @@ def render_linkedin_visual(
 ) -> Path:
     try:
         import matplotlib.pyplot as plt
+        from matplotlib.colors import LinearSegmentedColormap, Normalize
         from matplotlib.lines import Line2D
-        from matplotlib.patches import FancyArrowPatch
+        from matplotlib.patches import Rectangle
     except ImportError as exc:
         raise RuntimeError("install visualization support with `uv sync --extra viz`") from exc
 
@@ -113,9 +141,8 @@ def render_linkedin_visual(
     ink = "#17191E"
     muted = "#66707D"
     rule = "#D8DEE6"
-    coral = "#F25549"
+    coral = "#E84D3D"
     blue = "#276FBF"
-    purple = "#7457A6"
     teal = "#168477"
     amber = "#B56A12"
 
@@ -128,204 +155,98 @@ def render_linkedin_visual(
     fig.text(
         0.08,
         0.952,
-        "MCP is eating\nthe AI agent moat",
+        "What Product Hunt builders shipped,\nmonth by month",
         color=ink,
-        fontsize=29,
+        fontsize=26,
         fontweight="bold",
         va="top",
         linespacing=1.08,
     )
     fig.text(
         0.08,
-        0.866,
-        "The protocol boom standardizes plumbing. Scarcity moves to control.",
-        color=ink,
-        fontsize=12,
-        va="top",
-    )
-    fig.text(
-        0.08,
-        0.840,
+        0.862,
         f"{population:,} featured launches  |  Jan 1-Aug 29, 2026  |  Full population",
         color=muted,
-        fontsize=10.5,
+        fontsize=11,
         va="top",
     )
 
-    fig.text(0.08, 0.798, "THE INDUSTRY SHIFT", color=ink, fontsize=10, fontweight="bold")
-    canvas.add_patch(
-        FancyArrowPatch(
-            (0.08, 0.773),
-            (0.92, 0.773),
-            arrowstyle="-|>",
-            mutation_scale=15,
-            linewidth=1.5,
-            color=ink,
-        )
-    )
-    shift_labels = (
-        (0.10, "LABEL", coral),
-        (0.34, "ECOSYSTEM", purple),
-        (0.58, "PROTOCOL", blue),
-        (0.80, "CONTROL", teal),
-    )
-    for x, label, color in shift_labels:
-        fig.text(x, 0.752, label, color=color, fontsize=9, fontweight="bold", ha="center")
+    fig.text(0.08, 0.812, "SHARE OF FEATURED LAUNCHES", color=ink, fontsize=10, fontweight="bold")
+    fig.text(0.92, 0.812, "categories overlap", color=muted, fontsize=8.5, ha="right")
+    canvas.add_line(Line2D([0.08, 0.92], [0.798, 0.798], color=ink, linewidth=1.4))
 
-    columns = (
-        (0.08, 0.345, "LABEL  |  JAN-MAR", coral),
-        (0.38, 0.645, "CROWDING  |  APR-JUN", amber),
-        (0.68, 0.92, "PROTOCOL  |  JUL-AUG", blue),
-    )
-    for left, right, label, color in columns:
-        fig.text(left, 0.724, label, color=color, fontsize=9.5, fontweight="bold")
-        canvas.add_line(Line2D([left, right], [0.711, 0.711], color=color, linewidth=2.4))
-    canvas.add_line(Line2D([0.36, 0.36], [0.49, 0.725], color=rule, linewidth=1))
-    canvas.add_line(Line2D([0.66, 0.66], [0.49, 0.725], color=rule, linewidth=1))
+    grid_left = 0.31
+    grid_right = 0.92
+    cell_gap = 0.006
+    cell_width = (grid_right - grid_left - cell_gap * 7) / 8
+    month_x = tuple(grid_left + index * (cell_width + cell_gap) for index in range(8))
+    for index, x in enumerate(month_x):
+        fig.text(x + cell_width / 2, 0.774, data.months[index][5:], color=ink, fontsize=9.5,
+                 fontweight="bold", ha="center")
+        fig.text(x + cell_width / 2, 0.754, f"n={data.featured_posts[index]}", color=muted,
+                 fontsize=7.7, ha="center")
 
-    agent = data.category_shares["agent_identity"]
-    openclaw = data.category_shares["openclaw_ecosystem"]
-    coworker = data.category_shares["ai_coworkers"]
-    openclaw_lift = data.category_lifts["openclaw_ecosystem"][-1]
-    coworker_lift = data.category_lifts["ai_coworkers"][-1]
-    april_supply_change = data.featured_posts[3] / data.featured_posts[2] - 1
-    april_vote_change = data.median_votes[3] / data.median_votes[2] - 1
-    mcp_harness_share = data.mcp_posts[-1] / data.category_posts["harness_infrastructure"][-1]
-
-    _phase_text(
-        fig,
-        x=0.08,
-        y=0.684,
-        headline="'Agent' became the\nnew 'AI-powered'",
-        metrics=(
-            f"Agent positioning  {agent[0]:.1%} -> {agent[2]:.1%}",
-            f"OpenClaw  {openclaw[0]:.1%} -> {openclaw[2]:.1%}",
-        ),
-        why=(
-            "WHY: A named ecosystem gave builders a concrete surface to copy, extend, and package."
-        ),
-        ink=ink,
-        muted=muted,
-        accent=coral,
+    heatmap = LinearSegmentedColormap.from_list(
+        "launch_share", ("#EEF3F7", "#AFCDE5", "#4F91C9", "#174A78")
     )
-    _phase_text(
-        fig,
-        x=0.38,
-        y=0.684,
-        headline="More launches,\nless attention",
-        metrics=(
-            f"Launches  +{april_supply_change:.0%} Mar -> Apr",
-            f"Median votes  {april_vote_change:.0%} Mar -> Apr",
-            f"MCP  {data.mcp_shares[3]:.1%} -> {data.mcp_shares[5]:.1%}",
-        ),
-        why=(
-            "WHY: As agent supply crowded in, standardized connections became more valuable than "
-            "another wrapper."
-        ),
-        ink=ink,
-        muted=muted,
-        accent=amber,
-    )
-    _phase_text(
-        fig,
-        x=0.68,
-        y=0.684,
-        headline="MCP ate the\ninfrastructure wave",
-        metrics=(
-            f"MCP  {data.mcp_shares[-1]:.1%} of Aug launches",
-            f"{mcp_harness_share:.0%} of harness matches were MCP",
-            f"OpenClaw  {openclaw[-1]:.1%} | {openclaw_lift:.2f}x lift",
-            f"Coworker  {coworker[-1]:.1%} | {coworker_lift:.2f}x lift (n=6)",
-        ),
-        why=(
-            "WHY: One open protocol now dominates the category. Compatibility matters, but it is "
-            "becoming table stakes."
-        ),
-        ink=ink,
-        muted=muted,
-        accent=blue,
-    )
+    normalize = Normalize(vmin=0, vmax=0.23)
+    row_top = 0.724
+    row_height = 0.039
+    for row_index, category in enumerate(DISPLAY_ROWS):
+        y = row_top - row_index * row_height
+        fig.text(0.08, y + 0.012, DISPLAY_LABELS[category], color=ink, fontsize=9.2,
+                 fontweight="bold", va="center")
+        shares = data.mcp_shares if category == "mcp_specific" else data.category_shares[category]
+        for month_index, share in enumerate(shares):
+            x = month_x[month_index]
+            color = heatmap(normalize(share))
+            canvas.add_patch(Rectangle((x, y), cell_width, 0.032, facecolor=color,
+                                       edgecolor=background, linewidth=0.8))
+            label = "0" if share == 0 else f"{share:.1%}"
+            fig.text(x + cell_width / 2, y + 0.016, label,
+                     color="white" if share >= 0.105 else ink, fontsize=8.2,
+                     fontweight="bold", ha="center", va="center")
 
-    fig.text(0.08, 0.445, "WHAT BUILDERS SHOULD DO NEXT", color=ink, fontsize=10, fontweight="bold")
-    canvas.add_line(Line2D([0.08, 0.92], [0.431, 0.431], color=ink, linewidth=1.5))
+    fig.text(0.08, 0.382, "INDUSTRY EVENTS ALIGNED TO THE DATA", color=ink, fontsize=10,
+             fontweight="bold")
+    fig.text(0.92, 0.382, "descriptive, not causal", color=muted, fontsize=8.5, ha="right")
+    canvas.add_line(Line2D([0.08, 0.92], [0.368, 0.368], color=ink, linewidth=1.4))
 
-    actions = (
-        (
-            "01",
-            "Stop selling 'an agent'",
-            f"'Agent' already appears in {agent[-1]:.1%} of August launches. Differentiate on "
-            "ownership, outcomes, and failure handling.",
-            coral,
-        ),
-        (
-            "02",
-            "Do not mistake MCP for a moat",
-            "MCP explains most infrastructure growth. Standards create adoption by making the "
-            "standardized layer interchangeable.",
-            blue,
-        ),
-        (
-            "03",
-            "Build the agent management layer",
-            "Own proprietary context below the protocol, or identity, permissions, evaluation, "
-            "recovery, and coordination above it.",
-            teal,
-        ),
+    event_rows = (
+        ("JAN 30", "OPENCLAW RELEASE", "0.2% Jan  ->  5.3% Feb  ->  6.1% Mar  ->  0.8% Aug",
+         "A sharp ecosystem spike, then contraction.", coral),
+        ("MAY 13", "HARNESS PAPER", "4.6% Jan  ->  8.8% May  ->  10.5% Aug",
+         "Launch positioning was rising before the term was formalized.", amber),
+        ("JUL 28", "MCP SPEC", "4.2% Jan  ->  8.8% Jul  ->  9.0% Aug",
+         "Protocol adoption was established before the specification update.", blue),
+        ("JUL 17\nAUG 22", "LOOP ENGINEERING", "0 launches Jul  ->  1 Aug  |  5 all year",
+         "Industry discourse has not entered Product Hunt launch copy.", teal),
     )
-    for index, (number, title, body, color) in enumerate(actions):
-        top = 0.395 - index * 0.096
-        fig.text(0.08, top, number, color=color, fontsize=18, fontweight="bold", va="top")
-        fig.text(0.145, top, title, color=ink, fontsize=12.5, fontweight="bold", va="top")
-        fig.text(
-            0.145,
-            top - 0.029,
-            body,
-            color=muted,
-            fontsize=9.5,
-            va="top",
-            wrap=True,
-        )
-        if index < len(actions) - 1:
-            canvas.add_line(
-                Line2D([0.145, 0.92], [top - 0.076, top - 0.076], color=rule, linewidth=0.8)
-            )
+    for index, (date, event, metric, reading, color) in enumerate(event_rows):
+        y = 0.335 - index * 0.064
+        fig.text(0.08, y, date, color=color, fontsize=8.5, fontweight="bold", va="top")
+        fig.text(0.19, y, event, color=ink, fontsize=9.5, fontweight="bold", va="top")
+        fig.text(0.46, y, metric, color=color, fontsize=9.2, fontweight="bold", va="top")
+        fig.text(0.46, y - 0.024, reading, color=muted, fontsize=8.2, va="top")
+        if index < len(event_rows) - 1:
+            canvas.add_line(Line2D([0.19, 0.92], [y - 0.050, y - 0.050], color=rule,
+                                   linewidth=0.8))
 
-    fig.text(0.08, 0.105, "PAST", color=coral, fontsize=8.5, fontweight="bold")
-    fig.text(0.38, 0.105, "NOW", color=blue, fontsize=8.5, fontweight="bold")
-    fig.text(0.67, 0.105, "NEXT  |  INFERENCE", color=teal, fontsize=8.5, fontweight="bold")
-    fig.text(0.08, 0.079, "build an agent", color=ink, fontsize=10.5, fontweight="bold")
-    fig.text(0.38, 0.079, "connect\neverything", color=ink, fontsize=10.5, fontweight="bold")
+    fig.text(0.08, 0.075, "WHAT THE DATA SUPPORTS", color=teal, fontsize=9,
+             fontweight="bold")
     fig.text(
-        0.67,
-        0.079,
-        "manage agent\norganizations",
+        0.08,
+        0.052,
+        "Builders chased agents broadly, OpenClaw briefly, and MCP steadily. "
+        "Loop engineering is still\na method, not a launch category.",
         color=ink,
-        fontsize=10.5,
+        fontsize=9.8,
         fontweight="bold",
-    )
-    canvas.add_patch(
-        FancyArrowPatch(
-            (0.21, 0.084),
-            (0.35, 0.084),
-            arrowstyle="-|>",
-            mutation_scale=10,
-            linewidth=1,
-            color=muted,
-        )
-    )
-    canvas.add_patch(
-        FancyArrowPatch(
-            (0.53, 0.084),
-            (0.64, 0.084),
-            arrowstyle="-|>",
-            mutation_scale=10,
-            linewidth=1,
-            color=muted,
-        )
+        linespacing=1.35,
     )
     fig.text(
         0.08,
-        0.040,
+        0.020,
         "Featured launches only. Overlapping text taxonomy. Lift = top-decile share / population "
         "share. Timeline alignment is not causation.",
         color=muted,
@@ -333,7 +254,7 @@ def render_linkedin_visual(
     )
     fig.text(
         0.08,
-        0.019,
+        0.006,
         "github.com/appifex-ai/producthunt-trend-analysis",
         color=muted,
         fontsize=8.2,
@@ -343,33 +264,6 @@ def render_linkedin_visual(
     plt.close(fig)
     _update_manifest(output_path.parent, population=population)
     return output_path
-
-
-def _phase_text(
-    fig,
-    *,
-    x: float,
-    y: float,
-    headline: str,
-    metrics: tuple[str, ...],
-    why: str,
-    ink: str,
-    muted: str,
-    accent: str,
-) -> None:
-    fig.text(x, y, headline, color=ink, fontsize=14, fontweight="bold", va="top", linespacing=1.08)
-    metric_y = y - 0.075
-    for index, metric in enumerate(metrics):
-        fig.text(x, metric_y - index * 0.025, metric, color=accent, fontsize=9.5, fontweight="bold")
-    fig.text(
-        x,
-        metric_y - len(metrics) * 0.025 - 0.015,
-        textwrap.fill(why, width=38),
-        color=muted,
-        fontsize=8.5,
-        va="top",
-        wrap=True,
-    )
 
 
 def _update_manifest(output_dir: Path, *, population: int) -> None:

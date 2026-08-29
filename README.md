@@ -80,7 +80,7 @@ coordination model.
 - `analysis.json`: machine-readable results with taxonomy version
 - `report.md`: concise human-readable summary and methodology
 - `builder_brief.md`: Past / Now / Future interpretation and decisions for builders
-- `linkedin_trend_cycles.png`: 4:5 industry-evolution visualization for LinkedIn
+- `linkedin_trend_cycles.png`: 4:5 month-by-month build map with industry-event alignment
 - `linkedin_post.md`: post copy written around the shift from labels to infrastructure
 - `manifest.json`: SHA-256 checksums for reproducibility and change review
 

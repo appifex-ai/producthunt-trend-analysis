@@ -1,68 +1,52 @@
-MCP is eating the AI agent moat.
+I analyzed what 5,019 featured Product Hunt launches actually built, month by month.
 
-That sounds backwards. MCP is booming.
+Here is the data before the prediction.
 
-But that is exactly the point: standards create adoption by destroying differentiation in the
-thing they standardize.
+**Agent positioning:**
+12.0% Jan -> 16.9% Feb -> 22.7% Mar -> 17.5% Apr -> 18.7% May -> 18.3% Jun ->
+22.1% Jul -> 22.7% Aug
 
-I analyzed all 5,019 featured Product Hunt launches from January through August 2026. Most trend
-reports stop at "agents are winning" or "MCP is rising." The monthly lifecycle tells a more useful
-story.
+**Harness and infrastructure:**
+4.6% -> 4.9% -> 6.9% -> 7.1% -> 8.8% -> 8.9% -> 9.9% -> 10.5%
 
-The market moved through three phases.
+**OpenClaw ecosystem:**
+0.2% -> 5.3% -> 6.1% -> 1.7% -> 1.3% -> 1.3% -> 1.1% -> 0.8%
 
-**PAST: "agent" became the new "AI-powered."**
+**AI coworkers:**
+0.0% -> 0.4% -> 0.7% -> 0.3% -> 0.2% -> 1.0% -> 1.1% -> 1.1%
 
-Agent positioning rose from 12.0% of January launches to 22.7% in March. OpenClaw-related products
-jumped from 0.2% to 6.1% over the same period.
+**Loop engineering:**
+0 -> 0 -> 3 launches -> 0 -> 1 -> 0 -> 0 -> 1
 
-A new label made the market legible. Then it became common.
+The industry timeline makes those shapes more interesting.
 
-**TRANSITION: supply outran attention.**
+OpenClaw's first named release appeared January 30. Related launches jumped in February and March,
+then contracted sharply. That looks like an ecosystem replication cycle, not steady category growth.
 
-Featured launches increased 33% from March to April. Median votes fell from 124 to 96.
+The AI Harness Engineering paper appeared May 13. But harness positioning had already risen from
+4.6% in January to 8.8% in May. The paper named a movement already visible in products.
 
-That does not prove supply caused the decline. It does show how quickly launch supply expanded while
-attention did not keep pace.
+The July MCP specification update arrived when MCP-specific launches had already grown from 4.2% in
+January to 8.8% in July. Again, the products led the formal milestone.
 
-Meanwhile, MCP positioning kept growing.
+IBM defined loop engineering in July, followed by an August research review. Product Hunt showed
+zero matching launches in July and one in August. The discourse is ahead of product positioning.
 
-**NOW: MCP is commoditizing integration.**
+So the data supports four different trend types:
 
-Harness and infrastructure language reached 10.5% of August launches. But 47 of those 55 matches
-were MCP.
+- Agent identity: broad normalization
+- Harness and MCP: steady compounding
+- OpenClaw: spike, clones, contraction
+- Loop engineering: practice before product category
 
-So the apparent "agent infrastructure boom" is mostly one protocol becoming standard plumbing.
+Only after seeing those patterns would I make the controversial prediction:
 
-MCP compatibility matters. But compatibility alone is not a moat.
+MCP compatibility will matter, but compatibility alone will not be a moat.
 
-The more interesting signals are still small:
+Standards create adoption by making the standardized layer interchangeable.
 
-- OpenClaw fell to 0.8% of launches but appeared in August's top decile at 2.47x its base rate.
-- AI-coworker positioning reached only 1.1%, but 3.30x top-decile lift. That is based on six
-  launches, so it is promising, not proven.
-
-**NEXT: own what the protocol cannot standardize.**
-
-Below MCP: proprietary workflow, data, distribution, and outcomes.
-
-Above MCP: the agent management layer.
-
-- identity and authorization
-- permissions and approval boundaries
-- evaluation and observability
-- memory and recovery
-- delegation, review, and human-agent coordination
-
-My contrarian builder takeaway:
-
-Do not build another generic agent wrapper.
-
-Do not mistake an MCP connector for durable differentiation.
-
-Build the context nobody else has, or the control layer every agent will need.
-
-The next breakout category may look less like an agent and more like its manager.
+The defensible opportunities move to proprietary workflow, data, and distribution below MCP, or
+identity, permissions, evaluation, recovery, and coordination above it.
 
 Method: full pagination of featured Product Hunt launches; overlapping text taxonomy; monthly
 normalization; cumulative vote snapshots. Timeline alignment and attention lift are descriptive,
