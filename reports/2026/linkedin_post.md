@@ -1,46 +1,46 @@
-I analyzed 5,019 featured Product Hunt launches from 2026.
+Builders are not chasing one AI trend.
 
-The interesting finding is not that “AI agents are trending.”
+They are moving through four different adoption curves.
 
-It is that four agent narratives are moving on completely different curves.
+I analyzed 5,019 featured Product Hunt launches from January 1 through August 29, 2026.
 
-**Agent identity became normal.**
+**1. "Agent" became normal.**
 
-Explicit agent positioning rose from 12.0% of launches in January to 22.7% in August. The label is
-growing, but it is becoming less differentiating.
+Explicit agent positioning rose from 12.0% of January launches to 22.7% in August. That is broad
+adoption, but also label dilution: calling a product an agent is becoming less differentiating.
 
-**Harness infrastructure compounded.**
+**2. Harness infrastructure compounded.**
 
-Harness-related launches rose from 4.6% to 10.5%. No one-month explosion. Just a steady increase in
-the systems around agents: MCP, memory, evaluation, permissions, and runtime infrastructure.
+Harness-related positioning rose from 4.6% to 10.5%. It did not depend on one launch-month spike.
+The systems around agents - memory, MCP, evaluation, permissions, orchestration, and runtime
+infrastructure - kept accumulating.
 
-**OpenClaw followed an ecosystem cycle.**
+**3. OpenClaw went through a boom-and-contraction cycle.**
 
-OpenClaw-related supply peaked at 6.1% of March launches, then fell to 0.8% in August. But the later,
-smaller cohort still appeared in the monthly top decile at 2.5-4.6x its base rate.
+OpenClaw-related launches peaked at 6.1% in March, then fell to 0.8% by August. But the smaller
+August cohort still appeared in the monthly top decile at 2.47x its base rate.
 
-The ecosystem shrank. The survivors got stronger.
+Supply contracted. Attention remained selective.
 
-**“AI coworker” is still a narrow category.**
+**4. "AI coworker" stayed small but attention-efficient.**
 
-Only 1.1% of August launches used explicit coworker positioning. Vokal is a useful example: it ranked
-#30 of 616 June launches with 447 votes, in the 95.3rd cumulative-vote percentile. A previous top-17
-sample missed it entirely.
+Only 1.1% of August launches used explicit coworker positioning, yet they appeared in the top
+decile at 3.30x their population share. The sample is small, so that is a signal to watch rather
+than a universal rule.
 
-And “loop engineering”? Only five explicit matches in the full dataset.
+My takeaway: "Is this trending?" is the wrong first question.
 
-That looks like a real engineering-practice trend whose discourse is ahead of its product marketing.
+Ask what shape the trend is taking:
 
-My takeaway: builders are not chasing one AI wave.
+- normalization
+- compounding infrastructure
+- ecosystem contraction
+- or an early narrative with disproportionate attention
 
-They are moving through different adoption cycles: normalization, infrastructure compounding,
-ecosystem contraction, and narrative formation.
+Those shapes imply very different product and positioning decisions.
 
-The useful question is not “what is trending?”
-
-It is “what shape is this trend taking, and is attention moving with supply?”
-
-Method: full pagination of featured Product Hunt launches, January 1-August 29; strict multi-label
-keyword taxonomy; current cumulative vote snapshots. Association, not causation.
+Method: full pagination of featured Product Hunt launches; strict, overlapping text taxonomy;
+monthly normalization; current cumulative vote snapshots. Attention lift is association, not
+causation.
 
 #AIagents #ProductHunt #DeveloperTools #BuildInPublic

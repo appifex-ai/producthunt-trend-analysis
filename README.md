@@ -31,6 +31,8 @@ Backfill a bounded range, using an exclusive end date:
 ph-trends sync --start 2026-01-01 --end 2027-01-01
 ph-trends verify --start 2026-01-01 --end 2027-01-01
 ph-trends analyze --year 2026 --output reports/2026
+uv sync --extra viz
+ph-trends-visualize
 ph-trends product Vokal
 ```
 
@@ -77,6 +79,8 @@ coordination model.
 - `external_events.csv`: versioned primary-source milestones for descriptive timeline comparison
 - `analysis.json`: machine-readable results with taxonomy version
 - `report.md`: concise human-readable summary and methodology
+- `linkedin_trend_cycles.png`: 4:5 static visualization for sharing the trend analysis
+- `linkedin_post.md`: post copy written around the visual's four adoption curves
 - `manifest.json`: SHA-256 checksums for reproducibility and change review
 
 Categories are multi-label rules in `src/ph_trends/taxonomy.json`. They match names, taglines,

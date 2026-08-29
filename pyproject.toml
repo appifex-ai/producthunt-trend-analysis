@@ -17,9 +17,13 @@ dev = [
   "pytest>=8.3,<9",
   "ruff>=0.11,<1",
 ]
+viz = [
+  "matplotlib>=3.10,<4",
+]
 
 [project.scripts]
 ph-trends = "ph_trends.cli:main"
+ph-trends-visualize = "ph_trends.visualization:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ph_trends"]

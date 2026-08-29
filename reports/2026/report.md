@@ -71,3 +71,9 @@ Posts are fetched from Product Hunt's GraphQL API with `featured: true`, partiti
 Categories overlap because a launch may match multiple narratives. Top-decile lift measures representation among high-vote launches; it does not establish causation or equal-age launch performance.
 
 Taxonomy version: `2026-08-29.4`.
+
+## Shareable visual
+
+![Four Product Hunt AI adoption curves](linkedin_trend_cycles.png)
+
+Regenerate the 4:5 LinkedIn image with `uv sync --extra viz && ph-trends-visualize`.
