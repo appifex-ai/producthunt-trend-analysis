@@ -128,27 +128,35 @@ def render_linkedin_visual(
     fig.text(
         0.08,
         0.952,
-        "Product Hunt's AI market moved\nfrom labels to infrastructure",
+        "MCP is eating\nthe AI agent moat",
         color=ink,
-        fontsize=25,
+        fontsize=29,
         fontweight="bold",
         va="top",
         linespacing=1.08,
     )
     fig.text(
         0.08,
-        0.862,
+        0.866,
+        "The protocol boom standardizes plumbing. Scarcity moves to control.",
+        color=ink,
+        fontsize=12,
+        va="top",
+    )
+    fig.text(
+        0.08,
+        0.840,
         f"{population:,} featured launches  |  Jan 1-Aug 29, 2026  |  Full population",
         color=muted,
-        fontsize=11.5,
+        fontsize=10.5,
         va="top",
     )
 
-    fig.text(0.08, 0.814, "THE INDUSTRY SHIFT", color=ink, fontsize=10, fontweight="bold")
+    fig.text(0.08, 0.798, "THE INDUSTRY SHIFT", color=ink, fontsize=10, fontweight="bold")
     canvas.add_patch(
         FancyArrowPatch(
-            (0.08, 0.789),
-            (0.92, 0.789),
+            (0.08, 0.773),
+            (0.92, 0.773),
             arrowstyle="-|>",
             mutation_scale=15,
             linewidth=1.5,
@@ -156,18 +164,18 @@ def render_linkedin_visual(
         )
     )
     shift_labels = (
-        (0.10, "AGENT IDENTITY", coral),
-        (0.34, "ECOSYSTEMS", purple),
-        (0.58, "INTEGRATION", blue),
-        (0.80, "ORGANIZATION", teal),
+        (0.10, "LABEL", coral),
+        (0.34, "ECOSYSTEM", purple),
+        (0.58, "PROTOCOL", blue),
+        (0.80, "CONTROL", teal),
     )
     for x, label, color in shift_labels:
-        fig.text(x, 0.768, label, color=color, fontsize=9, fontweight="bold", ha="center")
+        fig.text(x, 0.752, label, color=color, fontsize=9, fontweight="bold", ha="center")
 
     columns = (
-        (0.08, 0.345, "PAST  |  JAN-MAR", coral),
-        (0.38, 0.645, "TRANSITION  |  APR-JUN", amber),
-        (0.68, 0.92, "NOW  |  JUL-AUG", blue),
+        (0.08, 0.345, "LABEL  |  JAN-MAR", coral),
+        (0.38, 0.645, "CROWDING  |  APR-JUN", amber),
+        (0.68, 0.92, "PROTOCOL  |  JUL-AUG", blue),
     )
     for left, right, label, color in columns:
         fig.text(left, 0.724, label, color=color, fontsize=9.5, fontweight="bold")
@@ -188,7 +196,7 @@ def render_linkedin_visual(
         fig,
         x=0.08,
         y=0.684,
-        headline="A new label\nbecame a market",
+        headline="'Agent' became the\nnew 'AI-powered'",
         metrics=(
             f"Agent positioning  {agent[0]:.1%} -> {agent[2]:.1%}",
             f"OpenClaw  {openclaw[0]:.1%} -> {openclaw[2]:.1%}",
@@ -204,7 +212,7 @@ def render_linkedin_visual(
         fig,
         x=0.38,
         y=0.684,
-        headline="Supply outran\nattention",
+        headline="More launches,\nless attention",
         metrics=(
             f"Launches  +{april_supply_change:.0%} Mar -> Apr",
             f"Median votes  {april_vote_change:.0%} Mar -> Apr",
@@ -222,7 +230,7 @@ def render_linkedin_visual(
         fig,
         x=0.68,
         y=0.684,
-        headline="Standards beat\nundifferentiated clones",
+        headline="MCP ate the\ninfrastructure wave",
         metrics=(
             f"MCP  {data.mcp_shares[-1]:.1%} of Aug launches",
             f"{mcp_harness_share:.0%} of harness matches were MCP",
@@ -230,8 +238,8 @@ def render_linkedin_visual(
             f"Coworker  {coworker[-1]:.1%} | {coworker_lift:.2f}x lift (n=6)",
         ),
         why=(
-            "WHY: Attention stayed with differentiated ecosystems and team-level interfaces while "
-            "integration became table stakes."
+            "WHY: One open protocol now dominates the category. Compatibility matters, but it is "
+            "becoming table stakes."
         ),
         ink=ink,
         muted=muted,
@@ -244,23 +252,23 @@ def render_linkedin_visual(
     actions = (
         (
             "01",
-            "Do not sell the label",
+            "Stop selling 'an agent'",
             f"'Agent' already appears in {agent[-1]:.1%} of August launches. Differentiate on "
             "ownership, outcomes, and failure handling.",
             coral,
         ),
         (
             "02",
-            "Build the control plane",
-            "MCP explains most infrastructure growth. The next constraints are identity, auth, "
-            "permissions, evaluation, memory, and observability.",
+            "Do not mistake MCP for a moat",
+            "MCP explains most infrastructure growth. Standards create adoption by making the "
+            "standardized layer interchangeable.",
             blue,
         ),
         (
             "03",
-            "Test the organization layer",
-            "Coworker positioning attracts attention but has tiny support. Prototype how humans "
-            "delegate, review, and coordinate before scaling the claim.",
+            "Build the agent management layer",
+            "Own proprietary context below the protocol, or identity, permissions, evaluation, "
+            "recovery, and coordination above it.",
             teal,
         ),
     )
@@ -285,12 +293,12 @@ def render_linkedin_visual(
     fig.text(0.08, 0.105, "PAST", color=coral, fontsize=8.5, fontweight="bold")
     fig.text(0.38, 0.105, "NOW", color=blue, fontsize=8.5, fontweight="bold")
     fig.text(0.67, 0.105, "NEXT  |  INFERENCE", color=teal, fontsize=8.5, fontweight="bold")
-    fig.text(0.08, 0.079, "agent identity", color=ink, fontsize=10.5, fontweight="bold")
-    fig.text(0.38, 0.079, "interoperable\nsystems", color=ink, fontsize=10.5, fontweight="bold")
+    fig.text(0.08, 0.079, "build an agent", color=ink, fontsize=10.5, fontweight="bold")
+    fig.text(0.38, 0.079, "connect\neverything", color=ink, fontsize=10.5, fontweight="bold")
     fig.text(
         0.67,
         0.079,
-        "trustworthy agent\norganizations",
+        "manage agent\norganizations",
         color=ink,
         fontsize=10.5,
         fontweight="bold",
