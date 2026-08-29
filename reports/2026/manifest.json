@@ -1,0 +1,17 @@
+{
+  "files": {
+    "analysis.json": "a5993c56ad3d901f70e994272d890f981e8c2c9f8b4df6a846c9a82398668acf",
+    "category_matches.csv": "ac3a16cf343bf3ce8bb980fb4fc59c96414b457a4e5348ffcc5cebf32c19c545",
+    "category_trends.csv": "04387860ab17428d1e285ea85947c550d2040d994f3644b707f99050a2ffb149",
+    "external_events.csv": "7cbd9e4a989a1293b6bc905282f6382964cb5c24513a68d5b11ff97d7bfb30f1",
+    "insights.md": "bc35a5aa502e8b90c62f555f23f5381b33a1cba2c2f9bf2e383e76202ac282ab",
+    "linkedin_post.md": "feafaba8bb3a0f5e9162b5f4dad7e50288c3a20c286ef771d35e9d426d9174ed",
+    "monthly_summary.csv": "0952c76b0915955f26c4eaf56f5916e9c9e814d8c6c9c99994a5b59d6dcf1b08",
+    "report.md": "17973cac0ed2bb38e97130b785873772856f7793e038b79d82e302e76d59f708",
+    "theme_timelines.csv": "b411c8e0c934cfe768891abfd48854f17b17c7f862479640419bc52e0348cfa1",
+    "top_products.csv": "7f9074e0f699a3a6e254812d11b79f2c89c51b46310cc09b8421ec0313a760f6"
+  },
+  "posts": 5019,
+  "taxonomy_version": "2026-08-29.4",
+  "year": 2026
+}

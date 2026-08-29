@@ -1,0 +1,10 @@
+category,label,first_observed_month,peak_share_month,peak_population_share,peak_lift_month,peak_top_decile_lift,latest_month,latest_population_share,first_to_latest_change_pp
+agent_identity,Agent identity,2026-01,2026-03,0.227474,2026-06,2.198,2026-08,0.227099,10.67
+ai_coworkers,AI coworkers,2026-02,2026-08,0.01145,2026-06,4.968,2026-08,0.01145,0.75
+coding_and_building,Coding and building,2026-01,2026-03,0.075332,2026-01,2.888,2026-08,0.074427,3.51
+gtm_agents,GTM agents,2026-01,2026-06,0.006494,2026-06,4.968,2026-08,0.005725,0.34
+harness_infrastructure,Harness and infrastructure,2026-01,2026-08,0.104962,2026-05,1.911,2026-08,0.104962,5.87
+human_agent_organization,Human-agent organization,2026-01,2026-03,0.020679,2026-05,4.65,2026-08,0.017176,0.79
+loop_engineering,Loop engineering,2026-03,2026-03,0.004431,2026-03,3.319,2026-08,0.001908,-0.25
+model_release,Model releases,2026-01,2026-03,0.023634,2026-02,3.256,2026-08,0.01145,-0.94
+openclaw_ecosystem,OpenClaw ecosystem,2026-01,2026-03,0.060561,2026-04,4.57,2026-08,0.007634,0.53

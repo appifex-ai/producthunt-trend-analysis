@@ -29,6 +29,7 @@ Backfill a bounded range, using an exclusive end date:
 
 ```bash
 ph-trends sync --start 2026-01-01 --end 2027-01-01
+ph-trends verify --start 2026-01-01 --end 2027-01-01
 ph-trends analyze --year 2026 --output reports/2026
 ph-trends product Vokal
 ```

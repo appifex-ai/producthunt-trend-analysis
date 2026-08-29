@@ -51,7 +51,7 @@ def _month(post: dict[str, Any]) -> str:
 
 def _write_csv(path: Path, fieldnames: list[str], rows: list[dict[str, Any]]) -> None:
     with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -281,7 +281,8 @@ def validate_coverage(connection: sqlite3.Connection, year: int) -> None:
     rows = connection.execute(
         """
         SELECT range_start, range_end FROM sync_windows
-        WHERE status = 'completed' AND range_end > ? AND range_start < ?
+        WHERE status = 'completed' AND expected_count IS NOT NULL
+          AND range_end > ? AND range_start < ?
         ORDER BY range_start, range_end
         """,
         (start.isoformat(), end.isoformat()),

@@ -14,7 +14,7 @@ from ph_trends.analysis import analyze, find_products
 from ph_trends.api import ProductHuntClient
 from ph_trends.config import DEFAULT_DB_PATH, Settings
 from ph_trends.db import connect
-from ph_trends.sync import sync_range
+from ph_trends.sync import sync_range, verify_range_counts
 from ph_trends.taxonomy import Taxonomy
 
 
@@ -64,6 +64,13 @@ def build_parser() -> argparse.ArgumentParser:
     sync.add_argument("--refresh", action="store_true")
     sync.add_argument("--page-delay", type=float)
     sync.add_argument("--rate-reserve", type=int)
+
+    verify = subparsers.add_parser("verify", help="compare window membership with API totalCount")
+    verify.add_argument("--db")
+    verify.add_argument("--start", type=_date, required=True)
+    verify.add_argument("--end", type=_date, required=True)
+    verify.add_argument("--page-delay", type=float)
+    verify.add_argument("--rate-reserve", type=int)
 
     analysis = subparsers.add_parser("analyze", help="write deterministic analysis exports")
     analysis.add_argument("--db")
@@ -127,6 +134,26 @@ def main(argv: list[str] | None = None) -> int:
             print(
                 f"Analysis complete: {result.posts:,} posts across {result.months} months; "
                 f"wrote {result.output_dir}"
+            )
+        elif args.command == "verify":
+            settings = Settings.from_env(
+                db_path=db_path,
+                page_delay_seconds=args.page_delay,
+                rate_limit_reserve=args.rate_reserve,
+            )
+            with _exclusive_sync_lock(db_path):
+                with ProductHuntClient(
+                    token=settings.token,
+                    api_url=settings.api_url,
+                    page_size=settings.page_size,
+                    page_delay_seconds=settings.page_delay_seconds,
+                    rate_limit_reserve=settings.rate_limit_reserve,
+                    max_retries=settings.max_retries,
+                ) as client:
+                    result = verify_range_counts(connection, client, start=args.start, end=args.end)
+            print(
+                f"Verification complete: {result.windows_verified} windows in "
+                f"{result.requests} requests"
             )
         elif args.command == "product":
             matches = find_products(connection, args.query)

@@ -6,7 +6,7 @@ import pytest
 
 from ph_trends.api import Page
 from ph_trends.db import begin_run, connect
-from ph_trends.sync import month_windows, sync_range
+from ph_trends.sync import month_windows, sync_range, verify_range_counts
 
 
 class FakeClient:
@@ -93,3 +93,21 @@ def test_invalid_cursor_is_rejected_before_page_commit(tmp_path, make_post) -> N
     with pytest.raises(RuntimeError, match="cursor did not advance"):
         sync_range(connection, client, start=date(2026, 6, 1), end=date(2026, 7, 1))
     assert connection.execute("SELECT COUNT(*) FROM posts").fetchone()[0] == 0
+
+
+def test_verify_range_persists_authoritative_count(tmp_path, make_post) -> None:
+    connection = connect(tmp_path / "test.sqlite3")
+    sync_range(
+        connection,
+        FakeClient([Page([make_post("1")], False, None)]),
+        start=date(2026, 6, 1),
+        end=date(2026, 7, 1),
+    )
+    result = verify_range_counts(
+        connection,
+        FakeClient([Page([make_post("1")], False, None, total_count=1)]),
+        start=date(2026, 6, 1),
+        end=date(2026, 7, 1),
+    )
+    assert result.windows_verified == 1
+    assert connection.execute("SELECT expected_count FROM sync_windows").fetchone()[0] == 1

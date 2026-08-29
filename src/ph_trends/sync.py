@@ -45,6 +45,12 @@ class SyncResult:
     windows_completed: int
 
 
+@dataclass(frozen=True)
+class VerifyResult:
+    requests: int
+    windows_verified: int
+
+
 def sync_range(
     connection: sqlite3.Connection,
     client: ProductHuntClient,
@@ -151,3 +157,52 @@ def sync_range(
         posts_seen=posts_seen,
         windows_completed=windows_completed,
     )
+
+
+def verify_range_counts(
+    connection: sqlite3.Connection,
+    client: ProductHuntClient,
+    *,
+    start: date,
+    end: date,
+) -> VerifyResult:
+    verified = 0
+    for window_start_date, window_end_date in month_windows(start, end):
+        window_start = as_api_datetime(window_start_date)
+        window_end = as_api_datetime(window_end_date)
+        api_window_start = window_start
+        if window_start_date > start:
+            api_window_start = (
+                datetime(
+                    window_start_date.year,
+                    window_start_date.month,
+                    window_start_date.day,
+                    tzinfo=UTC,
+                )
+                - timedelta(seconds=1)
+            ).isoformat()
+        row = connection.execute(
+            "SELECT * FROM sync_windows WHERE range_start = ? AND range_end = ?",
+            (window_start, window_end),
+        ).fetchone()
+        if not row or row["status"] != "completed":
+            raise RuntimeError(
+                "cannot verify incomplete or missing window "
+                f"{window_start_date} to {window_end_date}"
+            )
+        page = client.fetch_posts_page(start=api_window_start, end=window_end)
+        local_count = connection.execute(
+            "SELECT COUNT(*) FROM window_posts WHERE window_id = ?", (int(row["id"]),)
+        ).fetchone()[0]
+        if page.total_count != local_count:
+            raise RuntimeError(
+                f"window count mismatch for {window_start_date}: "
+                f"API reported {page.total_count}, collected {local_count}"
+            )
+        connection.execute(
+            "UPDATE sync_windows SET expected_count = ?, updated_at = ? WHERE id = ?",
+            (page.total_count, datetime.now(UTC).isoformat(), int(row["id"])),
+        )
+        connection.commit()
+        verified += 1
+    return VerifyResult(requests=client.request_count, windows_verified=verified)
