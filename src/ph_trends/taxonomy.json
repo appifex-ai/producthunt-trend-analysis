@@ -1,0 +1,133 @@
+{
+  "version": "2026-08-29.4",
+  "categories": {
+    "agent_identity": {
+      "label": "Agent identity",
+      "patterns": [
+        "\\bai agents?\\b",
+        "\\bal agents?\\b",
+        "\\bagentic\\b",
+        "\\bai co-?workers?\\b",
+        "\\bai assistants?\\b",
+        "\\bai teammates?\\b",
+        "\\bautonomous agents?\\b",
+        "\\bagent autopilot\\b",
+        "\\bself-driving (?:agent|software|company)\\b"
+      ]
+    },
+    "ai_coworkers": {
+      "label": "AI coworkers",
+      "patterns": [
+        "\\bai co-?workers?\\b",
+        "\\bagents? as teammates?\\b",
+        "\\bai teammates?\\b",
+        "\\bvirtual employees?\\b",
+        "\\bdigital workers?\\b",
+        "\\bwork(?:ing)? alongside (?:your )?team\\b",
+        "\\bteammates? (?:with|and) (?:their )?(?:ai|al) agents?\\b"
+      ]
+    },
+    "loop_engineering": {
+      "label": "Loop engineering",
+      "patterns": [
+        "\\bloop engineering\\b",
+        "\\bagent loops?\\b",
+        "\\bfeedback loops?\\b",
+        "\\bplan(?:ning)?[ ,/-]+execute[ ,/-]+verify\\b",
+        "\\bself-improv(?:e|ing) agents?\\b",
+        "\\biterative agents?\\b",
+        "\\bagents? that continuous(?:ly)? (?:learn|improv)\\w*\\b"
+      ]
+    },
+    "harness_infrastructure": {
+      "label": "Harness and infrastructure",
+      "patterns": [
+        "\\b(?:ai|agent) harness(?:es)?\\b",
+        "\\bmcp\\b",
+        "\\bcontext engineering\\b",
+        "\\bagent memory\\b",
+        "\\bagent apis?\\b",
+        "\\bbrowser automation\\b",
+        "\\bagent evals?\\b",
+        "\\bai evaluation\\b",
+        "\\bai guardrails?\\b",
+        "\\bagent routines?\\b",
+        "\\bagent infrastructure\\b",
+        "\\bagent backends?\\b",
+        "\\bagent frameworks?\\b",
+        "\\bagent os\\b",
+        "\\bagent operating system\\b",
+        "\\bworkspaces? for ai agents?\\b",
+        "\\bparallel agents?\\b",
+        "\\bapproval-first agents?\\b",
+        "\\bagent permission(?:s|ing)?\\b"
+      ]
+    },
+    "human_agent_organization": {
+      "label": "Human-agent organization",
+      "patterns": [
+        "\\bhumans? and agents?\\b",
+        "\\bhuman-agent\\b",
+        "\\bagents? as teammates?\\b",
+        "\\bteams? of ai agents?\\b",
+        "\\bagent teams?\\b",
+        "\\bcompany autonomous\\b",
+        "\\bone-person compan(?:y|ies)\\b",
+        "\\bshared agent\\b",
+        "\\bmulti-agent\\b",
+        "\\b(?:their|your) agents? into one live workspace\\b",
+        "\\bagents?.{0,40}\\bshared (?:collaboration )?(?:space|workspace)\\b"
+      ]
+    },
+    "coding_and_building": {
+      "label": "Coding and building",
+      "patterns": [
+        "\\bcoding agents?\\b",
+        "\\bai code review\\b",
+        "\\bai developer tools?\\b",
+        "\\bfullstack ai\\b",
+        "\\bvibe cod(?:e|ing)\\b",
+        "\\bai app builders?\\b",
+        "\\bagentic software engineering\\b"
+      ]
+    },
+    "gtm_agents": {
+      "label": "GTM agents",
+      "patterns": [
+        "\\bmarketing agents?\\b",
+        "\\bsales agents?\\b",
+        "\\bai sdr\\b",
+        "\\bseo agents?\\b",
+        "\\bgrowth agents?\\b",
+        "\\bsocial media agents?\\b",
+        "\\bcontent agents?\\b",
+        "\\bfundraising agent\\b",
+        "\\bbook(?:s|ing)? meetings\\b",
+        "\\bqualified pipeline\\b",
+        "\\bprospecting agents?\\b",
+        "\\be-?commerce agents?\\b"
+      ]
+    },
+    "openclaw_ecosystem": {
+      "label": "OpenClaw ecosystem",
+      "patterns": [
+        "\\bopenclaw\\b",
+        "\\bkiloclaw\\b",
+        "\\bstoreclaw\\b",
+        "\\bsellerclaw\\b",
+        "\\bclawdbot\\b",
+        "\\bmoltbot\\b"
+      ]
+    },
+    "model_release": {
+      "label": "Model releases",
+      "patterns": [
+        "\\bclaude (?:opus|sonnet|haiku)\\b",
+        "\\bgemini [0-9]",
+        "\\bgpt-[0-9]",
+        "\\bqwen(?:[ -]?[0-9])?\\b",
+        "\\bfoundation model\\b"
+      ]
+    }
+  }
+}
