@@ -1,46 +1,60 @@
-Builders are not chasing one AI trend.
+The next AI product opportunity is not another agent.
 
-They are moving through four different adoption curves.
+It is the trust and organization layer around agents.
 
-I analyzed 5,019 featured Product Hunt launches from January 1 through August 29, 2026.
+I reached that conclusion after analyzing 5,019 featured Product Hunt launches from January through
+August 2026.
 
-**1. "Agent" became normal.**
+The market moved through three phases.
 
-Explicit agent positioning rose from 12.0% of January launches to 22.7% in August. That is broad
-adoption, but also label dilution: calling a product an agent is becoming less differentiating.
+**PAST: "agent" became a category.**
 
-**2. Harness infrastructure compounded.**
+Agent positioning rose from 12.0% of January launches to 22.7% in March. OpenClaw-related products
+jumped from 0.2% to 6.1% over the same period.
 
-Harness-related positioning rose from 4.6% to 10.5%. It did not depend on one launch-month spike.
-The systems around agents - memory, MCP, evaluation, permissions, orchestration, and runtime
-infrastructure - kept accumulating.
+A new label made the market legible. A named ecosystem gave builders something concrete to extend.
 
-**3. OpenClaw went through a boom-and-contraction cycle.**
+**TRANSITION: supply outran attention.**
 
-OpenClaw-related launches peaked at 6.1% in March, then fell to 0.8% by August. But the smaller
-August cohort still appeared in the monthly top decile at 2.47x its base rate.
+Featured launches increased 33% from March to April. Median votes fell from 124 to 96.
 
-Supply contracted. Attention remained selective.
+That does not prove supply caused the decline, but it is consistent with a crowded market where an
+agent wrapper stopped being enough.
 
-**4. "AI coworker" stayed small but attention-efficient.**
+Meanwhile, MCP positioning kept growing.
 
-Only 1.1% of August launches used explicit coworker positioning, yet they appeared in the top
-decile at 3.30x their population share. The sample is small, so that is a signal to watch rather
-than a universal rule.
+**NOW: integration is becoming table stakes.**
 
-My takeaway: "Is this trending?" is the wrong first question.
+Harness and infrastructure language reached 10.5% of August launches. But 47 of those 55 matches
+were MCP.
 
-Ask what shape the trend is taking:
+So the apparent "harness boom" is mostly an interoperability story.
 
-- normalization
-- compounding infrastructure
-- ecosystem contraction
-- or an early narrative with disproportionate attention
+The more interesting signals are still small:
 
-Those shapes imply very different product and positioning decisions.
+- OpenClaw fell to 0.8% of launches but appeared in August's top decile at 2.47x its base rate.
+- AI-coworker positioning reached only 1.1%, but 3.30x top-decile lift. That is based on six
+  launches, so it is promising, not proven.
 
-Method: full pagination of featured Product Hunt launches; strict, overlapping text taxonomy;
-monthly normalization; current cumulative vote snapshots. Attention lift is association, not
-causation.
+**NEXT: build where integration creates new pain.**
+
+When tool access becomes standard, the bottlenecks move upward:
+
+- identity and authorization
+- permissions and approval boundaries
+- evaluation and observability
+- memory and recovery
+- delegation, review, and human-agent coordination
+
+My builder takeaway:
+
+Do not sell "an agent."
+
+Sell the job it owns, the boundary it respects, the evidence it produces, and the way humans stay in
+control.
+
+Method: full pagination of featured Product Hunt launches; overlapping text taxonomy; monthly
+normalization; cumulative vote snapshots. Timeline alignment and attention lift are descriptive,
+not causal.
 
 #AIagents #ProductHunt #DeveloperTools #BuildInPublic

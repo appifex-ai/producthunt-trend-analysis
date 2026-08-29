@@ -462,6 +462,13 @@ def _render_report(
             "",
             f"Taxonomy version: `{taxonomy_version}`.",
             "",
+            "## Shareable visual",
+            "",
+            "![Product Hunt AI industry evolution](linkedin_trend_cycles.png)",
+            "",
+            "Regenerate the 4:5 LinkedIn image with "
+            "`uv sync --extra viz && ph-trends-visualize`.",
+            "",
         ]
     )
     return "\n".join(lines)

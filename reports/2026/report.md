@@ -63,6 +63,7 @@ Vote and comment counts are cumulative snapshots collected through `2026-08-29T0
 - **2026-05-13**: AI Harness Engineering formalized the model-harness-environment substrate ([source](https://arxiv.org/abs/2605.13357))
 - **2026-06-02**: Vokal launched its shared collaboration space on Product Hunt ([source](https://www.producthunt.com/products/vokal-2))
 - **2026-07-17**: IBM published its definition of loop engineering ([source](https://www.ibm.com/think/topics/loop-engineering))
+- **2026-07-28**: MCP released a stateless, HTTP-native specification with authorization hardening ([source](https://blog.modelcontextprotocol.io/posts/2026-07-28/))
 - **2026-08-22**: A research review reported an exploratory study of loop engineering adoption ([source](https://arxiv.org/abs/2608.21884))
 
 ## Methodology
@@ -74,6 +75,6 @@ Taxonomy version: `2026-08-29.4`.
 
 ## Shareable visual
 
-![Four Product Hunt AI adoption curves](linkedin_trend_cycles.png)
+![Product Hunt AI industry evolution](linkedin_trend_cycles.png)
 
 Regenerate the 4:5 LinkedIn image with `uv sync --extra viz && ph-trends-visualize`.

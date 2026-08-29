@@ -1,14 +1,15 @@
 {
   "files": {
-    "analysis.json": "a5993c56ad3d901f70e994272d890f981e8c2c9f8b4df6a846c9a82398668acf",
+    "analysis.json": "4f9e6eebfe45d6bcdb0a62de986f930cfa44d111974d4cc8289ab31ca12736c9",
+    "builder_brief.md": "edb1d4ea46598d7348f08faabc0fc10d40cffa1e2037843300a2fcf2e6e3f418",
     "category_matches.csv": "ac3a16cf343bf3ce8bb980fb4fc59c96414b457a4e5348ffcc5cebf32c19c545",
     "category_trends.csv": "04387860ab17428d1e285ea85947c550d2040d994f3644b707f99050a2ffb149",
-    "external_events.csv": "7cbd9e4a989a1293b6bc905282f6382964cb5c24513a68d5b11ff97d7bfb30f1",
+    "external_events.csv": "bbc80b9b86e0ceb1940f45f6ee732f093059f0218f30fe1ae0fad7a3d0641021",
     "insights.md": "bc35a5aa502e8b90c62f555f23f5381b33a1cba2c2f9bf2e383e76202ac282ab",
-    "linkedin_post.md": "d7c99eefea6df5e40a6bf8cfc24c8fdfca6c5d882ac67c33750c12948f32683c",
-    "linkedin_trend_cycles.png": "68aec7778c874bcaf9e5ceffb39ed31804abc14eafe06a2f2ec24343cc5d6d1d",
+    "linkedin_post.md": "60b2b33cd9b7f147b0a1258100e8ebdd56ae53428cd2d10f0b3507866acab6a2",
+    "linkedin_trend_cycles.png": "cc44ba2efc4e4e3efa2337b5eb5abfab945b6a92470d0733c2ccbc217d751160",
     "monthly_summary.csv": "0952c76b0915955f26c4eaf56f5916e9c9e814d8c6c9c99994a5b59d6dcf1b08",
-    "report.md": "a2c6820dd88d7f65cf5c021327c7748a2032bc9bc1bec061221e2a0a4fcc1319",
+    "report.md": "aa4cc4d60a41a1b44a5f18759d49e019f6a27153617707a06fa480a402ef0d2c",
     "theme_timelines.csv": "b411c8e0c934cfe768891abfd48854f17b17c7f862479640419bc52e0348cfa1",
     "top_products.csv": "7f9074e0f699a3a6e254812d11b79f2c89c51b46310cc09b8421ec0313a760f6"
   },
